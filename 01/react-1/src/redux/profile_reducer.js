@@ -11,6 +11,8 @@ let initialState = {
 };
 
 const profileReducer = (state = initialState, action) => {
+  //для того чтобы Реакт понял что данные изменились нужно поменять ссылку на объект, создать его полную копию
+
   switch (action.type) {
     case ADD_POST:
       let newPost = {
@@ -18,13 +20,14 @@ const profileReducer = (state = initialState, action) => {
         message: state.newPostText,
         likesCount: 0,
       };
-      state.posts.push(newPost);
-      state.newPostText = "";
-      return state;
-    case UPDATE_NEW_POST_TEXT:
-      state.newPostText = action.newText;
 
-      return state;
+      return {
+        ...state,
+        posts: [...state.posts, newPost],
+        newPostText: "",
+      };
+    case UPDATE_NEW_POST_TEXT:
+      return { ...state, newPostText: action.newText };
     default:
       return state;
   }

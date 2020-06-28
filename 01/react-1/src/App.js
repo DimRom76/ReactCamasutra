@@ -6,21 +6,20 @@ import Profile from "./components/Profile/Profile";
 import Empty from "./components/Empty/Empty";
 import { Route } from "react-router-dom";
 import DialogsContainer from "./components/Dialogs/DialogsContainer";
+import UsersContainer from "./components/Users/UsersContainer";
 
-const App = (props) => {
+const App = () => {
   return (
     <div className="app-wrapper">
       <Header />
       <Navbar />
       <div className="app-wrapper-content">
-        <Route
-          path="/dialogs"
-          render={() => <DialogsContainer store={props.store} />}
-        />
-        <Route path="/profile" render={() => <Profile store={props.store} />} />
+        <Route path="/dialogs" render={() => <DialogsContainer />} />
+        <Route path="/profile" render={() => <Profile />} />
         <Route path="/news" component={Empty} />
         <Route path="/music" component={Empty} />
         <Route path="/settings" component={Empty} />
+        <Route path="/users" render={() => <UsersContainer />} />
       </div>
     </div>
   );
